@@ -5,6 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/***
+ * 解散房间
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

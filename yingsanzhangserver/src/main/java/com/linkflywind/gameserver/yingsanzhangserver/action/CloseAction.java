@@ -8,6 +8,7 @@ import com.linkflywind.gameserver.core.player.Player;
 import com.linkflywind.gameserver.core.TransferData;
 import com.linkflywind.gameserver.core.room.RoomAction;
 import com.linkflywind.gameserver.yingsanzhangserver.protocolData.request.A1002Request;
+import com.linkflywind.gameserver.yingsanzhangserver.protocolData.response.CloseResponse;
 import com.linkflywind.gameserver.yingsanzhangserver.protocolData.response.ConnectResponse;
 import com.linkflywind.gameserver.yingsanzhangserver.room.YingSanZhangRoomActorManager;
 import com.linkflywind.gameserver.yingsanzhangserver.room.YingSanZhangRoomContext;
@@ -45,7 +46,7 @@ public class CloseAction extends BaseAction implements RoomAction<A1002Request, 
         p.ifPresent(player -> {
             player.setDisConnection(true);
             player.setGameWebSocketSession(message.getSession());
-            context.sendAll(new ConnectResponse(player.getGameWebSocketSession().getId()), 1001);
+            context.sendAll(new CloseResponse(player.getGameWebSocketSession().getId()), 1001);
         });
     }
 }

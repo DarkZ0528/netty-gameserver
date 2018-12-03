@@ -11,6 +11,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * 准备
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

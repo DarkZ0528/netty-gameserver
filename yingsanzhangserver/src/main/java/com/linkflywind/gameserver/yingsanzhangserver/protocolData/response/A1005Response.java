@@ -5,6 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * 开始游戏
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

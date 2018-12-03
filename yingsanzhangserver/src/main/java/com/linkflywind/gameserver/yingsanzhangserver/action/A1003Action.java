@@ -80,6 +80,7 @@ public class A1003Action extends BaseAction implements RoomAction<A1003Request, 
                     }
                 } else {
                     try {
+                        optionalTransferData.setProtocol(9999);
                         send(new ErrorResponse("房卡不足"), optionalTransferData, connectorName);
                     } catch (JsonProcessingException e) {
                         logger.error("json error:", e);

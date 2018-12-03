@@ -67,7 +67,7 @@ public class A1004Action extends BaseAction implements RoomAction<A1004Request, 
                 context.beginGame();
             }
         } else {
-            context.send(new ErrorResponse("房间已满"), new TransferData(session, context.getServerName(), 1003, null));
+            context.send(new ErrorResponse("房间已满"), new TransferData(session, context.getServerName(), 9999, null));
         }
     }
 }

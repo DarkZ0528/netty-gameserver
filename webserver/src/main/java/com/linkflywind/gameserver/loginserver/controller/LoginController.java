@@ -73,8 +73,6 @@ public class LoginController {
     @GetMapping("api/guest")
     public GuestResponse guest(String deviceId) {
         UserModel userModel = userRepository.findByNameAndUserType(deviceId, 1);
-
-
         if (userModel == null) {
             userModel = new UserModel();
             userModel.setName(deviceId);
