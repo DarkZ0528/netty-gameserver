@@ -16,6 +16,8 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 @Component
 @Protocol(1012)
@@ -25,13 +27,12 @@ public class A1012Action extends BaseAction implements RoomAction<A1012Request, 
     @Autowired
     private YingSanZhangRoomActorManager roomActorManager;
 
-
-
     @Override
     public void requestAction(TransferData optionalTransferData) {
 
         if (optionalTransferData.getData() != null) {
             try {
+                Map<String,String> map = new HashMap<>();
                 A1012Request a1009Request = unPackJson(optionalTransferData.getData(), A1012Request.class);
 
                 ActorRef actorRef = roomActorManager.getRoomActorRef(a1009Request.getRoomId());

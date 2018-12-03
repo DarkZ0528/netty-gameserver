@@ -2,6 +2,7 @@ package com.linkflywind.gameserver.core.room;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.linkflywind.gameserver.core.list.CircularList;
 import com.linkflywind.gameserver.core.player.Player;
 import com.linkflywind.gameserver.core.TransferData;
 import lombok.Data;
@@ -32,7 +33,7 @@ public abstract class RoomContext {
     protected int currentInningsNUmber;
     protected String serverName;
     protected String connectorName;
-    protected volatile LinkedList<? super Player> playerList;
+    protected volatile CircularList<? super Player> playerList;
     protected RoomManager roomManager;
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -53,15 +54,15 @@ public abstract class RoomContext {
         this.master = master;
         this.serverName = serverName;
         this.connectorName = connectorName;
-        this.playerList = new LinkedList<>();
+        this.playerList = new CircularList<>();
         this.roomManager = roomManager;
     }
 
     public void sendAll(Object o, int protocol) {
         for (Object playerObject : this.playerList) {
-                Player player = (Player) playerObject;
-                send(o, new TransferData(player.getGameWebSocketSession(),
-                        this.serverName, protocol, null));
+            Player player = (Player) playerObject;
+            send(o, new TransferData(player.getGameWebSocketSession(),
+                    this.serverName, protocol, null));
         }
     }
 
@@ -78,7 +79,7 @@ public abstract class RoomContext {
             transferData.setData(data);
             this.redisTemplate.convertAndSend(this.connectorName, transferData);
         } catch (JsonProcessingException e) {
-            logger.error("JsonProcessingException ",e);
+            logger.error("JsonProcessingException ", e);
         }
     }
 
